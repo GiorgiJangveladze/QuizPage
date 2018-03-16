@@ -15,13 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' =>'guest'],function()
-{
-	Route::get('/login',function()
-	{
-		return view('auth.login');
-	});
-});
 
 Route::group(['middleware' =>'auth'],function()
 {
@@ -32,18 +25,28 @@ Route::group(['middleware' =>'auth'],function()
 
 		//Categories module routes Begin
 			Route::get('/category/index',['uses' => 'Admin\CategoryController@index','as' => 'categoryindex']);
-			Route::post('/category/add','Admin\CategoryController@stroreCategory');
-			Route::post('/category/edit','Admin\CategoryController@editCategory');
-			Route::delete('/category/edit',['uses' => 'Admin\CategoryController@deleteCategory','as' => 'categoryDelete']);
+			Route::post('/category/edit',['uses'=>'Admin\CategoryController@categoryEdit','as' => 'categoryEdit']);
 		//Categories module routes End
+
+		//Quiz module routes Begin
+			Route::get('/quiz',['uses' => 'Admin\QuizController@index','as' => 'quizIndex']);
+			Route::get('/quiz/add',['uses'=>'Admin\QuizController@addQuiz','as' => 'addQuiz']);
+			Route::post('/quiz/add','Admin\QuizController@addRequestQuiz');
+			Route::get('/quiz/edit/{id}',['uses'=>'Admin\QuizController@editQuiz','as' => 'editQuiz']);#
+			Route::post('/quiz/edit/{id}','Admin\QuizController@editRequestQuiz');
+			Route::delete('/quiz/delete',['uses' => 'Admin\QuizController@deleteQuiz','as' => 'QuizDelete']);
+		//Quiz module routes End
+
+		//Question module routes Begin
+			//Route::get('/question',['uses' => 'Admin\QuizController@index','as' => 'quizIndex']);
+			Route::get('/question/add/{id}',['uses'=>'Admin\QuestionController@addQuestion','as' => 'addQuestion']);
+			Route::post('/question/add/{id}','Admin\QuestionController@addRequestQuestion');
+			Route::get('/question/edit/{id}',['uses'=>'Admin\QuestionController@editQuestion','as' => 'editQuestion']);#
+			Route::post('/question/edit/{id}','Admin\QuestionController@editRequestQuestion');
+			Route::delete('/question/delete',['uses' => 'Admin\QuestionController@deleteQuestion','as' => 'deleteQuestion']);
+		//Question module routes End
+
 	});
 });
-
 Route::auth();
-
-// Route::get('/home', 'HomeController@index');
-Route::get('admin/example',function()
-{
-	return view('admin.example');
-});
 

@@ -1,4 +1,4 @@
-<!-- @if(session()->has('success'))
+@if(session()->has('success'))
 <script type="text/javascript">
 	$(function(){
 		alertify.alert(" {!! session()->get('success') !!} ");
@@ -12,4 +12,4 @@
 		alertify.success("{!! session()->get('error') !!}");
 	});
 </script>
-@endif -->
+@endif

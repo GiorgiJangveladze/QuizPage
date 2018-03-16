@@ -4,12 +4,11 @@
 		        <!--Warning messages End-->
 		        <section class="content-header">
 				      <h1>
-				        Categories	
-				        <small>advanced tables</small>
+				        Categories
 				      </h1>      
 			    </section>
 
-				    <section class="content">
+				<section class="content">
 						      <div class="row">
 						        <div class="col-xs-12">
 						          <div class="box">

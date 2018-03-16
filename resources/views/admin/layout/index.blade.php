@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Quiz</title>
     <!-- Tell the browser to be responsive to screen width -->
+    <link rel="stylesheet" href="{{asset('/adminTemplate/bower_components/select2/dist/css/select2.min.css')}}">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="{{asset('/adminTemplate/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -27,6 +29,8 @@
     <link rel="stylesheet" href="{{asset('/adminTemplate/bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{asset('/adminTemplate/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/alertifyjs/css/alertify.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/custom.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,7 +55,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-
+   
         @yield('content')
         <!-- <section class="content-header">
           
@@ -74,14 +78,13 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 3 -->
 <script src="{{asset('/adminTemplate/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="{{asset('admin/bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
+<script src="{{asset('/adminTemplate/bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-    $.widget.bridge('uibutton', $.ui.button);
-</script>
+<!-- Select2 -->
+<script src="{{asset('/adminTemplate/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<!-- InputMask -->
 <!-- Bootstrap 3.3.7 -->
 <script src="{{asset('/adminTemplate/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- Morris.js charts -->
@@ -111,5 +114,8 @@
 <script src="{{asset('/adminTemplate/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('/adminTemplate/dist/js/demo.js')}}"></script>
+<script src="{{asset('/alertifyjs/alertify.js')}}"></script>
+ @include('admin.includes.message')
+ <script src="{{asset('/js/myscripts.js')}}"></script>
 </body>
 </html>

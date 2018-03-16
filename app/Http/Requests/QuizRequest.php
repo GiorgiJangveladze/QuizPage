@@ -24,10 +24,9 @@ class QuizRequest extends Request
     public function rules()
     {
         return [
-            // 'address'       => 'required|min:3|max:100',
-            // 'email'         => 'required|string|email|max:100',
-            // 'phone'         => 'required|min:11|numeric',
-            // 'address-ge'    => 'nullable|min:3|max:100'
+            'title'         => 'required|min:3|max:100',
+            'image'         => 'required|mimes:jpeg,jpg,png|max:2000',
+            'category'      => 'required'
         ];
     }
 }

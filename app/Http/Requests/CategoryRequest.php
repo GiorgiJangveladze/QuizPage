@@ -24,10 +24,7 @@ class CategoryRequest extends Request
     public function rules()
     {
         return [
-            // 'address'       => 'required|min:3|max:100',
-            // 'email'         => 'required|string|email|max:100',
-            // 'phone'         => 'required|min:11|numeric',
-            // 'address-ge'    => 'nullable|min:3|max:100'
+            'name' => 'required|min:2|max:50',
         ];
     }
 }
