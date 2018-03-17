@@ -11,16 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
+Route::get('/',['uses' => 'HomeController@index','as' => 'home']);
+Route::get('/Test/{id}',['uses'=>'HomeController@test','as' => 'testPage']);
+Route::post('/Test/{id}','HomeController@requesttest');
+Route::post('/store',['uses' => 'HomeController@storeResult','as' => 'saveResult']);
 Route::group(['middleware' =>'auth'],function()
 {
 	Route::group(['middleware'=>'admin','prefix' => 'admin'],function()
 	{
 		Route::get('/',['uses' => 'Admin\AdminController@index','as' => 'admin']);
+		Route::post('/','Admin\AdminController@export');
 		Route::get('/logout',['uses'=> 'Admin\AdminController@logout','as' => 'logout']);
 
 		//Categories module routes Begin
@@ -41,7 +41,7 @@ Route::group(['middleware' =>'auth'],function()
 			//Route::get('/question',['uses' => 'Admin\QuizController@index','as' => 'quizIndex']);
 			Route::get('/question/add/{id}',['uses'=>'Admin\QuestionController@addQuestion','as' => 'addQuestion']);
 			Route::post('/question/add/{id}','Admin\QuestionController@addRequestQuestion');
-			Route::get('/question/edit/{id}',['uses'=>'Admin\QuestionController@editQuestion','as' => 'editQuestion']);#
+			Route::get('/question/edit/{id}',['uses'=>'Admin\QuestionController@editQuestion','as' => 'editQuestion']);
 			Route::post('/question/edit/{id}','Admin\QuestionController@editRequestQuestion');
 			Route::delete('/question/delete',['uses' => 'Admin\QuestionController@deleteQuestion','as' => 'deleteQuestion']);
 		//Question module routes End

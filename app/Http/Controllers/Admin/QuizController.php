@@ -10,16 +10,19 @@ use App\Http\Requests\QuizRequestWithoutimg;
 use App\Http\Controllers\Controller;
 use App\Models\Test;
 use App\Models\Category;
+use App\Models\Question;
 
 class QuizController extends Controller
 {
     protected $quiz;
     protected $category;
+    protected $question;
 
     public function __construct()
     {
     	$this->quiz = new Test();
       $this->category = new Category();
+      $this->question = new Question();
     }
 
     public function index()
@@ -128,10 +131,11 @@ class QuizController extends Controller
             $id = (int)$request->input('id');
             $_quiz = $this->quiz->where('id',$id)->first();
 
-            if(\File::exists('images/quizz/'.$quiz->image))
+            if(\File::exists('images/quizz/'.$_quiz->image))
             {
-                \File::Delete('images/quizz/'.$item->image);
+                \File::Delete('images/quizz/'.$_quiz->image);
             }
+            $_questions = $this->question->where('test_id',$id)->delete();
 
             if($_quiz->categories->count() > 0)
             {

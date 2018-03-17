@@ -3,6 +3,10 @@
 	
 	<section class="content-header">
       <h1>
+        <form method="post" action=""> 
+         {{ csrf_field() }}
+         <input type="submit" name="export"  class="btn btn-info" value="Export Answers" >
+        </form>
         <small>General information about our page</small>
       </h1>      
     </section>
@@ -62,8 +66,35 @@
           </div>
         </div>
         <!-- ./col -->
-      </div>
-
+      
+      
+          <div class="col-xs-12">
+                <div class="box">
+            <div class="box-body">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>Quizz</th>
+                    <th>Name</th>
+                    <th>Questions</th>
+                    <th>Right answers</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @foreach($answers as $answer)
+                <tr>
+                  <td>{{$answer->quiz_title}}</td>
+                  <td>{{$answer->name}}</td>
+                  <td>{{$answer->question_count}}</td>
+                  <td>{{$answer->right_answers}}</td>
+                </tr>
+                @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>  
     </section>
 @endsection
 @section('footხer')

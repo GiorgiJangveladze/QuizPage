@@ -9,7 +9,7 @@
             <!--special section title need class .header-->
             <li class="header">MAIN MODULES</li>
 
-            <li >
+            <li>
                 <a href="{{route('admin')}}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     <span class="pull-right-container">
